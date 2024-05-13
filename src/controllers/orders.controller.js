@@ -10,3 +10,5 @@ async function getAllOrders(req, res) {
         res.status(500).send({ mensagem: 'Erro ao obter todos os pedidos' });
     }
 }
+
+module.exports = { getAllOrders };
