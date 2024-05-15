@@ -1,6 +1,5 @@
 const pool = require('../config/database.config');
 const { verifyEmail, verifyCpf, verifyPassword } = require('../models/verify.functions');
-const { hash } = require('bcrypt');
 
 const getAllUsers = async(req, res) => {
     try {
@@ -43,9 +42,8 @@ const postUser = async(req, res) => {
         } else if(!verifyPassword(password)) {
             return res.status(400).send({ message: 'invalid_password' });
         } else {
-            const newPassword = await hash(password, 8);
             await pool.query('INSERT INTO users(name, email, cpf, telephone, password, address) VALUES($1, $2, $3, $4, $5, $6);',
-        [name, email, cpf, telephone, newPassword, address]);
+        [name, email, cpf, telephone, password, address]);
             return res.status(201).send({ message: 'user successfully registered' });
         }
     } catch(e) {
@@ -56,8 +54,8 @@ const postUser = async(req, res) => {
 
 const patchUser = async(req, res) => {
     try {
-        const { id } = req.params;
-        const { name, email, cpf, telephone, password, address } = req.body;
+        const { email } = req.params;
+        const { name, cpf, telephone, password, address } = req.body;
 
         const user = getUserByEmail(email);
         
@@ -76,8 +74,8 @@ const patchUser = async(req, res) => {
         } else if(!verifyPassword(password)) {
             return res.status(400).send({ message: 'invalid_password' });
         } else {
-            await pool.query('UPDATE users SET name=$1, email=$2, cpf=$3, telephone=$4, password=$5, address=$6 WHERE id=$7;',
-        [name, email, cpf, telephone, password, address, id]);
+            await pool.query('UPDATE users SET name=$1, email=$2, cpf=$3, telephone=$4, password=$5, address=$6 WHERE email=$2;',
+        [name, email, cpf, telephone, password, address]);
             return res.status(200).send({ message: 'user successfully updated' });
         }
     } catch(e) {
@@ -88,15 +86,15 @@ const patchUser = async(req, res) => {
 
 const deleteUser = async(req, res) => {
     try {
-        const { id } = req.params;
+        const { email } = req.params;
 
         const user = getUserByEmail(email);
         
         if(!user) {
             return res.status(404).send({ message: 'User not found' });
         }
-        
-        await pool.query('DELETE FROM users WHERE id=$1', [id]);
+
+        await pool.query('DELETE FROM users WHERE email=$1', [email]);
         return res.status(200).send({ message: 'user successfully deleted' });
     } catch(e) {
         console.log('Could not DELETE user, server error', e);
