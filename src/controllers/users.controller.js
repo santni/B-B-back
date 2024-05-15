@@ -14,6 +14,20 @@ const getAllUsers = async(req, res) => {
     }
 }
 
+const getUserByEmail = async(req, res) => {
+    try {
+        const { email } = req.params;
+
+        const user = await pool.query('SELECT * FROM users WHERE email=$1', [email]);
+        return user.rowCount > 0 ?
+            res.status(200).send( user.rows[0] ) :
+            res.status(404).send({ message: 'User not found' });
+    } catch(e) {
+        console.log('Could not GET user by email, server error', e);
+        return res.status(500).send({ message: 'Could not HTTP GET' }); 
+    }
+}
+
 const postUser = async(req, res) => {
     try {
         const { name, email, cpf, telephone, password, address } = req.body;
@@ -40,10 +54,16 @@ const postUser = async(req, res) => {
     }
 }
 
-const putUser = async(req, res) => {
+const patchUser = async(req, res) => {
     try {
         const { id } = req.params;
         const { name, email, cpf, telephone, password, address } = req.body;
+
+        const user = getUserByEmail(email);
+        
+        if(!user) {
+            return res.status(404).send({ message: 'User not found' });
+        }
         
         if(name.length < 10) {
             return res.status(400).send({ message: 'short_name' });
@@ -69,6 +89,13 @@ const putUser = async(req, res) => {
 const deleteUser = async(req, res) => {
     try {
         const { id } = req.params;
+
+        const user = getUserByEmail(email);
+        
+        if(!user) {
+            return res.status(404).send({ message: 'User not found' });
+        }
+        
         await pool.query('DELETE FROM users WHERE id=$1', [id]);
         return res.status(200).send({ message: 'user successfully deleted' });
     } catch(e) {
@@ -77,4 +104,4 @@ const deleteUser = async(req, res) => {
     }
 }
 
-module.exports = { getAllUsers, postUser, putUser, deleteUser };
+module.exports = { getAllUsers, getUserByEmail, postUser, patchUser, deleteUser };
