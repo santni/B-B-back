@@ -8,7 +8,17 @@ const getAllUsers = async(req, res) => {
             res.status(200).send({ message: 'Users not registered' });
     } catch(e) {
         console.log('Could not GET all users, server error', e);
-        return res.status(500).send({ message: 'Could not GET all users' });
+        return res.status(500).send({ message: 'Could not HTTP GET' });
+    }
+}
+
+const postUser = async(req, res) => {
+    try {
+        const { name, email, cpf, telephone, address } = req.params;
+        
+    } catch(e) {
+        console.log('Could not POST user, server error', e);
+        return res.status(500).send({ message: 'Could not HTTP POST' });
     }
 }
 
