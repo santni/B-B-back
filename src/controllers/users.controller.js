@@ -1,5 +1,6 @@
 const pool = require('../config/database.config');
 const { verifyEmail, verifyCpf, verifyPassword } = require('../models/verify.functions');
+const { hash } = require('bcrypt');
 
 const getAllUsers = async(req, res) => {
     try {
@@ -28,8 +29,9 @@ const postUser = async(req, res) => {
         } else if(!verifyPassword(password)) {
             return res.status(400).send({ message: 'invalid_password' });
         } else {
+            const newPassword = await hash(password, 8);
             await pool.query('INSERT INTO users(name, email, cpf, telephone, password, address) VALUES($1, $2, $3, $4, $5, $6);',
-        [name, email, cpf, telephone, password, address]);
+        [name, email, cpf, telephone, newPassword, address]);
             return res.status(201).send({ message: 'user successfully registered' });
         }
     } catch(e) {
