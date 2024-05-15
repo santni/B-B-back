@@ -27,3 +27,22 @@ number INT NOT NULL,
 complement TEXT,
 cep CHAR(8));
 
+CREATE TABLE orders(
+id SERIAL PRIMARY KEY,
+userEmail VARCHAR(100),
+restaurantID INT,
+dateandhour CHAR(16) NOT NULL,
+state VARCHAR(10) NOT NULL,
+total DECIMAL(10,2) NOT NULL,
+FOREIGN KEY(userEmail) REFERENCES users(email),
+FOREIGN KEY(restaurantID) REFERENCES restaurants(id));
+
+CREATE TABLE itensOrders(
+id SERIAL PRIMARY KEY,
+orderid INT,
+productid INT,
+quantity INT NOT NULL,
+priceByUnit DECIMAL(10,2) NOT NULL,
+FOREIGN KEY(orderid) REFERENCES orders(id),
+FOREIGN KEY(productid) REFERENCES products(id));
+

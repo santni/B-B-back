@@ -55,4 +55,8 @@ const verifyPassword = (password) => {
     }
 }
 
-module.exports = { verifyEmail, verifyCpf, verifyPassword };
+const verifyCEP = (cep) => {
+
+}
+
+module.exports = { verifyEmail, verifyCpf, verifyPassword, verifyCEP };
