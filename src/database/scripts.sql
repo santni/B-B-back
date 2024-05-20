@@ -45,4 +45,3 @@ quantity INT NOT NULL,
 priceByUnit DECIMAL(10,2) NOT NULL,
 FOREIGN KEY(orderid) REFERENCES orders(id),
 FOREIGN KEY(productid) REFERENCES products(id));
-
