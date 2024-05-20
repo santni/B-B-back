@@ -4,7 +4,28 @@ const getOrdersInCart = async(req, res) => {
     try {
         const { useremail } = req.params;
 
-        const orders = await pool.query('SELECT * FROM orders WHERE useremail=$1 AND state=$2 OR state=$3',[useremail, 'pending', 'delivering']);
+        const orders = await pool.query(`SELECT 
+        orders.id AS order_id,
+        orders.dateandhour AS order_date,
+        orders.state AS order_state,
+        restaurants.name AS restaurant_name,
+        products.name AS product_name,
+        itensorders.quantity AS quantity,
+        products.price AS price_per_unit
+    FROM 
+        orders
+    INNER JOIN 
+        itensorders ON orders.id = itensorders.orderid
+    INNER JOIN 
+        products ON itensorders.productid = products.id
+    INNER JOIN 
+        restaurants ON orders.restaurantid = restaurants.id
+    WHERE 
+        orders.userEmail = 'pedrormont@gmail.com';
+    
+    `,[useremail]);
+
+    //query errada
 
         return orders.rowCount > 0 ? 
             res.status(200).send({ total: orders.rowCount, orders: orders.rows }) :

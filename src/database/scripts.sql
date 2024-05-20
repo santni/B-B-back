@@ -78,3 +78,23 @@ INSERT INTO products(name, description, price, restaurantid) VALUES ('teste', '1
 
 INSERT INTO orders(useremail, restaurantid, dateandhour, state) VALUES ('pedrormont@gmail.com', 1, '19-11-2006 18:16', 'delivered');
 INSERT INTO itensorders(orderid, productid, quantity) VALUES (1, 1, 5);
+
+SELECT 
+    orders.id AS order_id,
+    orders.dateandhour AS order_date,
+    orders.state AS order_state,
+    restaurants.name AS restaurant_name,
+    SUM(itensorders.quantity * products.price) AS total_price
+FROM 
+    orders
+INNER JOIN 
+    itensorders ON orders.id = itensorders.orderid
+INNER JOIN 
+    products ON itensorders.productid = products.id
+INNER JOIN 
+    restaurants ON orders.restaurantid = restaurants.id
+WHERE 
+    orders.userEmail = 'pedrormont@gmail.com'
+GROUP BY 
+    orders.id, orders.dateandhour, orders.state, restaurants.name;
+
