@@ -52,6 +52,11 @@ const putAddress = async(req, res) => {
         const { id } = req.params;
         const { state, city, neighborhood, number, complement, cep } = req.body;
 
+        const address = getAddressById(id);
+        if(!address) {
+            return res.status(404).send({ message: 'address not found' });
+        }
+
         if(!state || !city || !neighborhood || !number || !complement || !cep) {
             return res.status(400).send({ message: 'Incomplete data' });
         } else if(typeof state !== 'string' || typeof city !== 'string' || typeof neighborhood !== 'string' || typeof number !== 'number' || typeof complement !== 'string' || typeof cep !== 'number') {
@@ -69,4 +74,21 @@ const putAddress = async(req, res) => {
     }
 }
 
-module.exports = { getAlladdress, getAddressById, postAddress, putAddress };
+const deleteAddress = async(req, res) => {
+    try {
+        const { id } = req.params;
+
+        const address = getAddressById(id);
+        if(!address) {
+            return res.status(404).send({ message: 'address not found' });
+        } else {
+            await pool.query('DELETE FROM address WHERE id=$1',[id]);
+            return res.status(200).send({ message: 'address successfully deleted' });
+        }
+    } catch(e) {
+        console.log('Could not DELETE address, server error', e);
+        return res.status(500).send({ message: 'Could not HTTP DELETE' });
+    }
+}
+
+module.exports = { getAlladdress, getAddressById, postAddress, putAddress, deleteAddress };
