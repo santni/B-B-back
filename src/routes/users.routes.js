@@ -5,7 +5,7 @@ const usersController = require('../controllers/users.controller');
 router.get('/', usersController.getAllUsers);
 router.get('/:email', usersController.getUserByEmail)
 router.post('/', usersController.postUser);
-router.patch('/:email', usersController.patchUser);
+router.put('/:email', usersController.putUser);
 router.delete('/:email', usersController.deleteUser);
 
 module.exports = router;
