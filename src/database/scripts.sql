@@ -63,4 +63,3 @@ INSERT INTO products(name, description, price, restaurantid) VALUES ('teste', '1
 INSERT INTO orders(useremail, restaurantid, dateandhour, state) VALUES ('pedrormont@gmail.com', 1, '19-11-2006 18:16', 'delivered');
 INSERT INTO itensorders(orderid, productid, quantity) VALUES (2, 1, 4);
 
-

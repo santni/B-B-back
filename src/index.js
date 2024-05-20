@@ -4,6 +4,7 @@ const ordersRouter = require('./routes/orders.routes');
 const usersRouter = require('./routes/users.routes');
 const addressRouter = require('./routes/address.routes');
 const cartRouter = require('./routes/cart.routes');
+const restaurantsRouter = require('./routes/restaurants.routes')
 
 const port = process.env.PORT;
 
@@ -14,5 +15,6 @@ app.use('/orders', ordersRouter);
 app.use('/users', usersRouter);
 app.use('/address', addressRouter);
 app.use('/cart', cartRouter);
+app.use('/restaurants', restaurantsRouter);
 
 app.listen(port, () => console.log(`Servidor iniciado em http://localhost:${port}`));
