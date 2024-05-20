@@ -32,8 +32,8 @@ id SERIAL PRIMARY KEY,
 userEmail VARCHAR(100),
 restaurantID INT,
 dateandhour CHAR(16) NOT NULL,
+/* data e hora da entrega */
 state VARCHAR(10) NOT NULL,
-total DECIMAL(10,2) NOT NULL,
 FOREIGN KEY(userEmail) REFERENCES users(email),
 FOREIGN KEY(restaurantID) REFERENCES restaurants(id));
 
@@ -42,6 +42,24 @@ id SERIAL PRIMARY KEY,
 orderid INT,
 productid INT,
 quantity INT NOT NULL,
-priceByUnit DECIMAL(10,2) NOT NULL,
 FOREIGN KEY(orderid) REFERENCES orders(id),
 FOREIGN KEY(productid) REFERENCES products(id));
+
+CREATE TABLE products(
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(30) NOT NULL UNIQUE,
+    description TEXT NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
+    restaurantid INT,
+    FOREIGN KEY (restaurantid) REFERENCES restaurants(id)
+);
+
+INSERT INTO address(state, city, neighborhood, number, cep) VALUES ('SP', 'Valinhos', 'teste3', 23, '12345678');
+INSERT INTO restaurants(name, type, operation, address) VALUES ('MC', 'FAST-FOOD', '07:30-23:30', 1);
+INSERT INTO orders(useremail, restaurantid, dateandhour, state) VALUES ('pedrormont@gmail.com', 1, '19-11-2006 18:16', 'pending');
+INSERT INTO itensorders(orderid, productid, quantity) VALUES (1, 1, 2);
+INSERT INTO products(name, description, price, restaurantid) VALUES ('teste', '123', 10.50, 1);
+
+INSERT INTO orders(useremail, restaurantid, dateandhour, state) VALUES ('pedrormont@gmail.com', 1, '19-11-2006 18:16', 'delivered');
+INSERT INTO itensorders(orderid, productid, quantity) VALUES (2, 1, 4);
+
