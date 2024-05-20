@@ -39,7 +39,7 @@ const verifyCpf = (cpf) => {
 }
 
 const number = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
-const specialCaracteres = ['!', '@', '#', '$', '%', '&', '*', '(', ')'];
+const specialCaracteres = ['!', '@', '#', '$', '%', '&', '*', '(', ')', '£', '¢', '¬', '§', '-', '_', '+', '=', '[', ']', '{', '}', '^', '~', ':', ';', '/'];
 
 const verifyPassword = (password) => {
     let newPassword = password.split('');
@@ -55,8 +55,4 @@ const verifyPassword = (password) => {
     }
 }
 
-const verifyCEP = (cep) => {
-
-}
-
-module.exports = { verifyEmail, verifyCpf, verifyPassword, verifyCEP };
+module.exports = { verifyEmail, verifyCpf, verifyPassword };

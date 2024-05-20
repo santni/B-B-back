@@ -52,7 +52,7 @@ const postUser = async(req, res) => {
     }
 }
 
-const patchUser = async(req, res) => {
+const putUser = async(req, res) => {
     try {
         const { email } = req.params;
         const { name, cpf, telephone, password, address } = req.body;
@@ -89,17 +89,16 @@ const deleteUser = async(req, res) => {
         const { email } = req.params;
 
         const user = getUserByEmail(email);
-        
         if(!user) {
             return res.status(404).send({ message: 'User not found' });
+        } else {
+            await pool.query('DELETE FROM users WHERE email=$1', [email]);
+            return res.status(200).send({ message: 'user successfully deleted' });   
         }
-
-        await pool.query('DELETE FROM users WHERE email=$1', [email]);
-        return res.status(200).send({ message: 'user successfully deleted' });
     } catch(e) {
         console.log('Could not DELETE user, server error', e);
         return res.status(500).send({ message: 'Could not HTTP DELETE' });
     }
 }
 
-module.exports = { getAllUsers, getUserByEmail, postUser, patchUser, deleteUser };
+module.exports = { getAllUsers, getUserByEmail, postUser, putUser, deleteUser };

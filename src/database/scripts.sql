@@ -25,7 +25,7 @@ city VARCHAR(50) NOT NULL,
 neighborhood VARCHAR(50) NOT NULL,
 number INT NOT NULL,
 complement TEXT,
-cep CHAR(8));
+cep CHAR(8) NOT NULL);
 
 CREATE TABLE orders(
 id SERIAL PRIMARY KEY,
