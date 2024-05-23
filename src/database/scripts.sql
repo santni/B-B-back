@@ -54,12 +54,14 @@ CREATE TABLE products(
     FOREIGN KEY (restaurantid) REFERENCES restaurants(id)
 );
 
+INSERT INTO users(name, email, cpf, telephone, password) VALUES('pedro', 'pedrormont@gmail.com', '47355397869', '19997908453', 'Pedro@4739');
+
 INSERT INTO address(state, city, neighborhood, number, cep) VALUES ('SP', 'Valinhos', 'teste3', 23, '12345678');
 INSERT INTO restaurants(name, type, operation, address) VALUES ('MC', 'FAST-FOOD', '07:30-23:30', 1);
 INSERT INTO orders(useremail, restaurantid, dateandhour, state) VALUES ('pedrormont@gmail.com', 1, '19-11-2006 18:16', 'pending');
-INSERT INTO itensorders(orderid, productid, quantity) VALUES (1, 1, 2);
+INSERT INTO itensorders(orderid, productid, quantity) VALUES (3, 1, 2);
 INSERT INTO products(name, description, price, restaurantid) VALUES ('teste', '123', 10.50, 1);
 
 INSERT INTO orders(useremail, restaurantid, dateandhour, state) VALUES ('pedrormont@gmail.com', 1, '19-11-2006 18:16', 'delivered');
-INSERT INTO itensorders(orderid, productid, quantity) VALUES (2, 1, 4);
+INSERT INTO itensorders(orderid, productid, quantity) VALUES (4, 1, 4);
 

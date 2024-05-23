@@ -20,7 +20,21 @@ const getUserByEmail = async(req, res) => {
         const user = await pool.query('SELECT * FROM users WHERE email=$1', [email]);
         return user.rowCount > 0 ?
             res.status(200).send( user.rows[0] ) :
-            res.status(404).send({ message: 'User not found' });
+            res.status(200).send({ message: 'User not found' });
+    } catch(e) {
+        console.log('Could not GET user by email, server error', e);
+        return res.status(500).send({ message: 'Could not HTTP GET' }); 
+    }
+}
+
+const getUserByCPF = async(req, res) => {
+    try {
+        const { cpf } = req.params;
+
+        const user = await pool.query('SELECT cpf FROM users WHERE cpf=$1', [cpf]);
+        return user.rows[0] ? 
+            res.status(200).send(true) :
+            res.status(200).send(false);
     } catch(e) {
         console.log('Could not GET user by email, server error', e);
         return res.status(500).send({ message: 'Could not HTTP GET' }); 
@@ -101,4 +115,4 @@ const deleteUser = async(req, res) => {
     }
 }
 
-module.exports = { getAllUsers, getUserByEmail, postUser, putUser, deleteUser };
+module.exports = { getAllUsers, getUserByEmail, getUserByCPF, postUser, putUser, deleteUser };
