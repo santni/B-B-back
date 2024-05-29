@@ -1,6 +1,18 @@
 CREATE DATABASE bandb;
 \c bandb;
 
+CREATE TABLE avaliations(
+    id SERIAL PRIMARY KEY,
+    avaliation INT,
+    restaurantID INT,
+    userEmail VARCHAR(100),
+    FOREIGN KEY(restaurantID) REFERENCES restaurants(id),
+    FOREIGN KEY(userEmail) REFERENCES users(email));
+
+CREATE TABLE categories(
+    name VARCHAR(50) PRIMARY KEY
+);
+
 CREATE TABLE users (
 name VARCHAR(75),
 email VARCHAR(100) NOT NULL PRIMARY KEY,
@@ -15,8 +27,10 @@ id SERIAL PRIMARY KEY,
 name VARCHAR(75) NOT NULL,
 type VARCHAR(50) NOT NULL,
 operation CHAR(11) NOT NULL,
+category VARCHAR(50),
 address INT,
-FOREIGN KEY(address) REFERENCES address(id));
+FOREIGN KEY(address) REFERENCES address(id),
+FOREIGN KEY(category) REFERENCES categories(name));
 
 CREATE TABLE address(
 id SERIAL PRIMARY KEY,
