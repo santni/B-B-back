@@ -3,7 +3,18 @@ const pool = require('../config/database.config');
 //GET all restaurants 
 const getRestaurants = async (req, res) => {
     try {
-        const restaurants = await pool.query('SELECT * FROM restaurants;');
+        const restaurants = await pool.query(`
+    SELECT 
+        restaurants.name AS restaurant,
+        restaurants.type AS type,
+        products.name AS product,
+        products.description AS product_desc,
+        products.price AS price_product
+    FROM 
+        restaurants
+    JOIN 
+        products ON restaurants.id = products.restaurantid;
+    `);
         return restaurants.rowCount > 0 ?
             res.status(200).send({ total: restaurants.rowCount, restaurants: restaurants.rows }) :
             res.status(200).send({ message: 'Restaurants not registered' });
@@ -18,7 +29,21 @@ const getRestaurantsByName = async (req, res) => {
     try {
         const { name } = req.params;
 
-        const restaurants = await pool.query('SELECT * FROM restaurants WHERE name LIKE $1', [`${name}%`]);
+        const restaurants = await pool.query(`
+SELECT 
+    restaurants.name AS restaurant,
+    restaurants.type AS type,
+    products.name AS product,
+    products.description AS product_desc,
+    products.price AS price_product
+FROM
+    restaurants
+JOIN 
+    products ON restaurants.id = products.restaurantid
+WHERE 
+    restaurants.id = $1;
+
+        `, [`${name}%`]);
         return restaurants.rowCount > 0 ?
             res.status(200).send(restaurants.rows[0]) :
             res.status(404).send({ message: 'Restaurants not found' });
@@ -33,7 +58,20 @@ const getRestaurantsById = async (req, res) => {
     try {
         const { id } = req.params;
 
-        const restaurants = await pool.query('SELECT * FROM restaurants WHERE id=$1', [id]);
+        const restaurants = await pool.query(`
+SELECT 
+    restaurants.name AS restaurant,
+    restaurants.type AS type,
+    products.name AS product,
+    products.description AS product_desc,
+    products.price AS price_product
+FROM
+    restaurants
+JOIN 
+    products ON restaurants.id = products.restaurantid
+WHERE 
+    restaurants.id = $1;
+`, [id]);
         return restaurants.rowCount > 0 ?
             res.status(200).send(restaurants.rows[0]) :
             res.status(404).send({ message: 'Restaurants not found' });
@@ -124,7 +162,7 @@ const putRestaurants = async (req, res) => {
             return res.state(400).send({ message: 'Invalid Operation' });
         } else {
             await pool.query('UPDATE restaurants SET name=$1, type=$2, opertion=$3, address=$4 WHERE id=$5',
-                [ name, type, operation, address, id]);
+                [name, type, operation, address, id]);
             return res.status(200).send({ message: 'restaurants successfully updated' });
         }
     } catch (e) {
@@ -133,4 +171,4 @@ const putRestaurants = async (req, res) => {
     }
 }
 
-module.exports = { getRestaurants, getRestaurantsByName, getRestaurantsById, postRestaurants, deleteRestaurantsById};
+module.exports = { getRestaurants, getRestaurantsByName, getRestaurantsById, postRestaurants, putRestaurants, deleteRestaurantsById };
