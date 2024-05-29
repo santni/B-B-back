@@ -7,6 +7,7 @@ const getRestaurants = async (req, res) => {
     SELECT 
         restaurants.name AS restaurant,
         restaurants.type AS type,
+        restaurants.id AS id,
         products.name AS product,
         products.description AS product_desc,
         products.price AS price_product
@@ -32,6 +33,7 @@ const getRestaurantsByName = async (req, res) => {
         const restaurants = await pool.query(`
 SELECT 
     restaurants.name AS restaurant,
+    restaurants.id AS id,
     restaurants.type AS type,
     products.name AS product,
     products.description AS product_desc,
@@ -61,6 +63,7 @@ const getRestaurantsById = async (req, res) => {
         const restaurants = await pool.query(`
 SELECT 
     restaurants.name AS restaurant,
+    restaurants.id AS id,
     restaurants.type AS type,
     products.name AS product,
     products.description AS product_desc,
