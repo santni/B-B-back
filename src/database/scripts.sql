@@ -31,6 +31,7 @@
     id SERIAL PRIMARY KEY,
     state CHAR(2) NOT NULL,
     city VARCHAR(50) NOT NULL,
+    street VARCHAR(100) NOT NULL,
     neighborhood VARCHAR(50) NOT NULL,
     number INT NOT NULL,
     complement TEXT,
