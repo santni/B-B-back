@@ -28,17 +28,17 @@ const getAddressById = async(req, res) => {
 
 const postAddress = async(req, res) => {
     try {
-        const { state, city, neighborhood, number, complement, cep } = req.body;
+        const { state, city, neighborhood, number, complement, cep, street } = req.body;
 
-        if(!state || !city || !neighborhood || !number || !complement || !cep) {
+        if(!state || !city || !neighborhood || !number || !complement || !cep || !street) {
             return res.status(400).send({ message: 'Inomplete data' });
-        } else if(typeof state !== 'string' || typeof city !== 'string' || typeof neighborhood !== 'string' || typeof number !== 'number' || typeof complement !== 'string' || typeof cep !== 'number') {
+        } else if(typeof state !== 'string' || typeof city !== 'string' || typeof neighborhood !== 'string' || typeof number !== 'number' || typeof complement !== 'string' || typeof cep !== 'number' || typeof street !== 'string') {
             return res.state(400).send({ message: 'Invalid types' });
         } else if(cep.length !== 8) {
             return res.state(400).send({ message: 'Invalid CEP' });
         } else {
-            await pool.query('INSERT INTO address(state, city, neighborhood, number, complement, cep) VALUES($1, $2, $3, $4, $5, $6)',
-        [state, city, neighborhood, number, complement, cep]);
+            await pool.query('INSERT INTO address(state, city, neighborhood, number, complement, cep, street) VALUES($1, $2, $3, $4, $5, $6, $7)',
+        [state, city, neighborhood, number, complement, cep, street]);
             return res.status(201).send({ message: 'address successfully registered' });
         }
     } catch(e) {
