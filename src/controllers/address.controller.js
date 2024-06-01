@@ -58,7 +58,7 @@ const postAddress = async(req, res) => {
 const putAddress = async(req, res) => {
     try {
         const { id } = req.params;
-        const { state, city, neighborhood, number, complement, cep, userEmail } = req.body;
+        const { state, city, neighborhood, number, complement, cep, street, userEmail } = req.body;
 
         const address = getAddressById(id);
         if(!address) {
@@ -70,9 +70,9 @@ const putAddress = async(req, res) => {
             res.status(404).send({ message: 'user not found' });
         }
 
-        if(!state || !city || !neighborhood || !number || !complement || !cep) {
+        if(!state || !city || !neighborhood || !number || !complement || !cep || !street) {
             return res.status(400).send({ message: 'Incomplete data' });
-        } else if(typeof state !== 'string' || typeof city !== 'string' || typeof neighborhood !== 'string' || typeof number !== 'number' || typeof complement !== 'string' || typeof cep !== 'number') {
+        } else if(typeof state !== 'string' || typeof city !== 'string' || typeof neighborhood !== 'string' || typeof number !== 'number' || typeof complement !== 'string' || typeof cep !== 'number' || typeof street !== 'string') {
             return res.state(400).send({ message: 'Invalid types' });
         } else if(cep.length !== 8) {
             return res.state(400).send({ message: 'Invalid CEP' });
