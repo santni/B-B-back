@@ -28,9 +28,9 @@ const getAddressById = async(req, res) => {
 
 const postAddress = async(req, res) => {
     try {
-        const { state, city, neighborhood, number, complement, cep, street, userEmail } = req.body;
+        const { state, city, neighborhood, number, complement, cep, street, email } = req.body;
 
-        const user = (await pool.query('SELECT * FROM users WHERE email=$1',[userEmail])).rows;
+        const user = (await pool.query('SELECT * FROM users WHERE email=$1',[email])).rows;
 
         if(!user) {
             res.status(404).send({ message: 'user not found' });
@@ -46,7 +46,7 @@ const postAddress = async(req, res) => {
             const id = await pool.query('INSERT INTO address(state, city, neighborhood, number, complement, cep, street) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING id',
         [state, city, neighborhood, number, complement, cep, street]);
             await pool.query('UPDATE users SET address=$1 WHERE email=$2',
-                [id, userEmail]);
+                [id, email]);
             return res.status(201).send({ message: 'address successfully registered' });
         }
     } catch(e) {
@@ -58,14 +58,14 @@ const postAddress = async(req, res) => {
 const putAddress = async(req, res) => {
     try {
         const { id } = req.params;
-        const { state, city, neighborhood, number, complement, cep, street, userEmail } = req.body;
+        const { state, city, neighborhood, number, complement, cep, street, email } = req.body;
 
         const address = getAddressById(id);
         if(!address) {
             return res.status(404).send({ message: 'address not found' });
         }
     
-        const user = (await pool.query('SELECT * FROM users WHERE email=$1',[userEmail])).rows;
+        const user = (await pool.query('SELECT * FROM users WHERE email=$1',[email])).rows;
         if(!user) {
             res.status(404).send({ message: 'user not found' });
         }
@@ -80,7 +80,7 @@ const putAddress = async(req, res) => {
             await pool.query('UPDATE address SET state=$1, city=$2, neighborhood=$3, number=$3, complement=$4, cep=$5 WHERE id=$6',
         [state, city, neighborhood, number, complement, cep, id]);
             await pool.query('UPDATE users SET address=$1 WHERE email=$2',
-                [id,userEmail]);
+                [id,email]);
             return res.status(201).send({ message: 'address successfully registered' });
         }
     } catch(e) {
