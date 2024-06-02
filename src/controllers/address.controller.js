@@ -36,15 +36,15 @@ const postAddress = async(req, res) => {
             res.status(404).send({ message: 'user not found' });
         }
 
-        if(!state || !city || !neighborhood || !number || !complement || !cep || !street) {
+        if(!state || !city || !neighborhood || !number || !cep || !street) {
             return res.status(400).send({ message: 'Inomplete data' });
-        } else if(typeof state !== 'string' || typeof city !== 'string' || typeof neighborhood !== 'string' || typeof number !== 'number' || typeof complement !== 'string' || typeof cep !== 'number' || typeof street !== 'string') {
-            return res.state(400).send({ message: 'Invalid types' });
+        } else if(typeof state !== 'string' || typeof city !== 'string' || typeof neighborhood !== 'string' || typeof number !== 'number' || typeof complement !== 'string' || typeof cep !== 'string' || typeof street !== 'string') {
+            return res.status(400).send({ message: 'Invalid types' });
         } else if(cep.length !== 8) {
             return res.state(400).send({ message: 'Invalid CEP' });
         } else {
-            const id = await pool.query('INSERT INTO address(state, city, neighborhood, number, complement, cep, street) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING id',
-        [state, city, neighborhood, number, complement, cep, street]);
+            const { id } = (await pool.query('INSERT INTO address(state, city, neighborhood, number, complement, cep, street) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING id',
+        [state, city, neighborhood, number, complement, cep, street])).rows[0];
             await pool.query('UPDATE users SET address=$1 WHERE email=$2',
                 [id, email]);
             return res.status(201).send({ message: 'address successfully registered' });
@@ -60,7 +60,7 @@ const putAddress = async(req, res) => {
         const { id } = req.params;
         const { state, city, neighborhood, number, complement, cep, street, email } = req.body;
 
-        const address = getAddressById(id);
+        const address = (await pool.query('SELECT * FROM address WHERE id=$1',[id])).rows[0];
         if(!address) {
             return res.status(404).send({ message: 'address not found' });
         }

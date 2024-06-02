@@ -7,14 +7,8 @@ const getRestaurants = async (req, res) => {
     SELECT 
         restaurants.name AS restaurant,
         restaurants.type AS type,
-        restaurants.id AS id,
-        products.name AS product,
-        products.description AS product_desc,
-        products.price AS price_product
-    FROM 
-        restaurants
-    JOIN 
-        products ON restaurants.id = products.restaurantid;
+        restaurants.id AS id
+    FROM restaurants;
     `);
         return restaurants.rowCount > 0 ?
             res.status(200).send({ total: restaurants.rowCount, restaurants: restaurants.rows }) :
