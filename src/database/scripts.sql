@@ -87,3 +87,29 @@ JOIN
     products ON restaurants.id = products.restaurantid
 LEFT JOIN 
     avaliations ON restaurants.id = avaliations.restaurantid;
+
+//* Insert de Restaurantes*//
+//* Insert de Restaurantes Pizza*//
+INSERT INTO restaurants(name, type, operation, image, address) VALUES ('Pizzaria Castelo', 'Pizza', '07:30-23:30', '', 21);
+INSERT INTO restaurants(name, type, operation, image, address) VALUES ('Pizzaria Maremonti', 'Pizza', '07:30-23:30', '', 22);
+INSERT INTO restaurants(name, type, operation, image, address) VALUES ('Pizzaria Serata', 'Pizza', '07:30-23:30', '', 23);
+//* Insert de Restaurantes Sushi*//
+INSERT INTO restaurants(name, type, operation, image, address) VALUES ('Katori Sushi', 'Sushi', '07:30-23:30', '', 24);
+INSERT INTO restaurants(name, type, operation, image, address) VALUES ('Kitaki Sushi', 'Sushi', '07:30-23:30', '', 25);
+INSERT INTO restaurants(name, type, operation, image, address) VALUES ('Satoshy Sushi', 'Sushi', '07:30-23:30', '', 26);
+//* Insert de Restaurantes Sorvete*//
+INSERT INTO restaurants(name, type, operation, image, address) VALUES ('Sergel', 'Sorvete', '07:30-23:30', '', 27);
+INSERT INTO restaurants(name, type, operation, image, address) VALUES ('Tô indo açai', 'Sorvete', '07:30-23:30', '', 28);
+INSERT INTO restaurants(name, type, operation, image, address) VALUES ('Sorveteria eskimó', 'Sorvete', '07:30-23:30', '', 29);
+//* Insert de Restaurantes Massa*//
+INSERT INTO restaurants(name, type, operation, image, address) VALUES ('Spolleto', 'Massa', '07:30-23:30', '', 30);
+INSERT INTO restaurants(name, type, operation, image, address) VALUES ('Famiglia mancini', 'Massa', '07:30-23:30', '', 31);
+INSERT INTO restaurants(name, type, operation, image, address) VALUES ('jamies s italian', 'Massa', '07:30-23:30', '', 32);
+//* Insert de Restaurantes Marmita*//
+INSERT INTO restaurants(name, type, operation, image, address) VALUES ('Sabor Imperial', 'Marmita', '07:30-23:30', '', 33);
+INSERT INTO restaurants(name, type, operation, image, address) VALUES ('FASTNFIT', 'Marmita', '07:30-23:30', '' 34);
+INSERT INTO restaurants(name, type, operation, image, address) VALUES ('Marmitas do Zé', 'Marmita', '07:30-23:30', '', 35);
+//* Insert de Restaurantes FastFood*//
+INSERT INTO restaurants(name, type, operation, image, address) VALUES ('Mc Donald', 'FastFood', '07:30-23:30', '', 36);
+INSERT INTO restaurants(name, type, operation, image, address) VALUES ('Burger King', 'FastFood', '07:30-23:30', '', 37);
+INSERT INTO restaurants(name, type, operation, image, address) VALUES ('Subway', 'FastFood', '07:30-23:30', '', 38);
