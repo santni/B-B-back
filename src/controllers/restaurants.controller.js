@@ -78,6 +78,25 @@ WHERE
     }
 }
 
+const getRestaurantsByType = async (req, res) => {
+    try {
+        const { type } = req.params;
+
+        const restaurants = await pool.query(`
+    SELECT 
+        restaurants.name AS restaurant,
+        restaurants.type AS type,
+    FROM restaurants WHERE type=$1;
+`, [type]);
+        return restaurants.rowCount > 0 ?
+            res.status(200).send(restaurants.rows) :
+            res.status(404).send({ message: 'Restaurants not found' });
+    } catch (e) {
+        console.log('Could not GET restaurants by type, server error', e);
+        return res.status(500).send({ message: 'Could not HTTP GET' });
+    }
+}
+
 //POST restaurants
 const postRestaurants = async (req, res) => {
     try {
@@ -168,4 +187,4 @@ const putRestaurants = async (req, res) => {
     }
 }
 
-module.exports = { getRestaurants, getRestaurantsByName, getRestaurantsById, postRestaurants, putRestaurants, deleteRestaurantsById };
+module.exports = { getRestaurants, getRestaurantsByName, getRestaurantsById, getRestaurantsByType, postRestaurants, putRestaurants, deleteRestaurantsById };

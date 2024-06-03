@@ -24,6 +24,7 @@
     name VARCHAR(75) NOT NULL,
     type VARCHAR(50) NOT NULL,
     operation CHAR(11) NOT NULL,
+    image TEXT,
     address INT,
     FOREIGN KEY(address) REFERENCES address(id));
 
@@ -59,6 +60,7 @@
         name VARCHAR(30) NOT NULL UNIQUE,
         description TEXT NOT NULL,
         price DECIMAL(10, 2) NOT NULL,
+        image TEXT,
         restaurantid INT,
         FOREIGN KEY (restaurantid) REFERENCES restaurants(id)
     );
