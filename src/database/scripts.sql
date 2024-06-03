@@ -113,3 +113,49 @@ INSERT INTO restaurants(name, type, operation, image, address) VALUES ('Marmitas
 INSERT INTO restaurants(name, type, operation, image, address) VALUES ('Mc Donald', 'FastFood', '07:30-23:30', 'https://i.imgur.com/LwkxTQX.png', 36);
 INSERT INTO restaurants(name, type, operation, image, address) VALUES ('Burger King', 'FastFood', '07:30-23:30', 'https://i.imgur.com/GtkS4Aa.jpg', 37);
 INSERT INTO restaurants(name, type, operation, image, address) VALUES ('Subway', 'FastFood', '07:30-23:30', 'https://i.imgur.com/pJosNk9.jpg', 38);
+
+//* Insert de  Endereço de usuarios*//
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('São Paulo', 'Campinas', 'Rua das Oliveiras', 'Jardim das Flores', 234, 'Casa Verde', '13050-123');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('Rio de Janeiro', 'Niterói', 'Avenida das Palmeiras', 'Icaraí', 678, 'Apartamento 502', '24220-456');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('Minas Gerais', 'Belo Horizonte', 'Rua dos Ipês', 'Funcionários', 321, 'Bloco C Sala 101', '30130-321');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('Bahia', 'Salvador', 'Avenida das Gaivotas', 'Itapuã', 876, 'Casa Amarela', '41615-876');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('Bahia', 'Porto Seguro', 'Rua das Acácias', 'Petrópolis', 543, 'Fundos', '90470-543');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('Santa Catarina', 'Florianópolis', 'Rua das Rosas', 'Trindade', 871, 'Casa Verde', '88036-876');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('Santa Catarina', 'Criciúma', 'Avenida dos Coqueiros', 'Boa Viagem', 237, 'Bloco D, Apartamento 204', '51111-234');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('São Paulo', 'Valinhos', 'Rua das Mangueiras', 'Aldeota', 567, 'Casa Azul de esquina', '60140-567');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('Rio de Janeiro', 'Paraty', 'Avenida das Castanheiras', 'Nazaré', 890, 'Sala 301', '66035-890');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('Espírito Santo', 'Vitória', 'Rua dos Pinheiros', 'Jardim da Penha', 765, 'Perto do mercado PagueMenos', '29060-765');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('Paraná', 'Londrina', 'Avenida das Acácias', 'Jardim São Paulo', 321, 'Casa Azul', '86035-321');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('Goiás', 'Goiânia', 'Rua dos Girassóis', 'Setor Oeste', 654, 'Apartamento 102', '74120-654');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('Rio Grande do Norte', 'Natal', 'Avenida das Orquídeas', 'Tirol', 284, 'Sala 203', '59022-234');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('Paraíba', 'João Pessoa', 'Rua das Papoulas', 'Manaíra', 987, 'Casa Branca', '58038-987');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('Alagoas', 'Maceió', 'Avenida das Magnólias', 'Ponta Verde', 896, 'Bloco E, Apartamento 301', '57035-876');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('Sergipe', 'Aracaju', 'Rua das Violetas', 'Jardins', 543, 'Perto da farmácia Drogasil', '49025-543');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('Rio de Janeiro', 'Rio de Janeiro', 'Avenida das Bromélias', 'Adrianópolis', 789, 'Apartamento 402', '69057-789');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('Minas Gerais', 'Varginha', 'Rua dos Cravos', 'Plano Diretor Sul', 658, 'Do lado de um portão Vermelho', '77015-654');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('São Paulo', 'Ribeirão Preto', 'Avenida das Azaleias', 'Bosque', 312, 'Sala 201', '76804-987');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('Paraná', 'Curitiba', 'Avenida dos Lírios', 'Tancredo Neves', 124, 'Casa de esquina', '69314-876');
+
+//* Insert de Usuarios*//
+INSERT INTO users (name, email, cpf, telephone, password, addres) VALUES ('Maria Luiza Neves', 'maluneves@gmail.com', '544.685.560-48', '(41) 96448-1317', 'MaluN3ves87', 1),
+('João Guilherme Caetano dos Santos', 'joaoguicaet23@gmail.com', '676.903.400-08', '(27) 98019-3604', 'Guilh3rm&C4etano', 2),
+('Nicolly Isabeli dos Santos Silva', 'nicollyisabeliss@gmail.com', '234.048.098-15', '(16) 96486-1576', 'Nicolly3856??', 3),
+('Silvia Batista da Silva', 'silvabatistasilvia@gmail.com', '566.954.890-68', '(31) 99666-5386', 'B4atistaSilvia123', 4),
+('Mariana Pereira', 'maripereira34@gmail.com', '499.743.040-40', '(79) 98391-5975', 'MariPereira2354', 5),
+('Ana Livia Meirelles', 'meirellesana@gmail.com', '752.559.950-53', '(47) 99757-6059', 'MeirellesA22', 6),
+('Bianca Moraes Bandeira', 'moraesbia@gmail.com', '979.093.080-19', '(33) 96069-4835', 'BiaMoraes14##', 7),
+('Caio Constantino Arruda', 'caioarruda12@gmail.com', '088.293.520-80', '(69) 96771-9063', 'CaioConst**', 8),
+('Danilo Alves Correia', 'alvessdanilo@gmail.com', '023.783.990-30', '(44) 96264-8996', '4lvesDanilo90', 9),
+('Evandro Lima', 'evandrolima23@gmail.com', '424.934.430-47', '(75) 96796-6734', '3vandr0Lima', 10),
+('Felipe Augusto Ferreira', 'felipeaugustof@gmail.com', '117.660.310-80', '(93) 98000-7134', 'August0F3lipe#', 11),
+('Luiz Henrique Fernandes', 'luizfernandes67@gmail.com', '182.706.440-48', '(17) 96287-6888', 'LuizF3rn4nd3s33', 12),
+('Gabriella Marcondes', 'marcondesgabi@gmail.com', '516.877.290-00', '(32) 98893-3163', 'm4rcondesGabriella412', 13),
+('Helena Luz', 'luzhelena@gmail.com', '589.837.030-75', '(27) 96401-0794', 'Luzz66#', 14),
+('Iara Bernotti', 'iarabernotti@gmail.com', '024.584.540-20', '(95) 98185-8063', '1araB3rnotti3', 15),
+('Juliana Aparecida Santini', 'santinijuliana@gmail.com', '756.391.730-68', '(47) 99873-9480', 'Santini18#', 16),
+('Karina Fagundes Anjos', 'karinaanjos@gmail.com', '338.408.700-38', '(51) 96195-7635', '4njosska', 17),
+('Leonardo Pontes', 'pontessleo@gmail.com', '348.445.480-69', '(37) 99009-5287', 'PontesLeo16', 18),
+('Manuela Queiroz Machado', 'manuqueiroz14@gmail.com', '848.712.180-23', '(19) 99471-6069', 'manuqueiroz1356', 19),
+('Otavio Biori', 'bioriotavio@gmail.com', '010.915.590-40', '(24) 96195-1032', '0tavio8iori', 20);
+
+//* Insert de endereço de restaurante*//
