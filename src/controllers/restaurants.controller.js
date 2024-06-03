@@ -83,11 +83,7 @@ const getRestaurantsByType = async (req, res) => {
         const { type } = req.params;
 
         const restaurants = await pool.query(`
-    SELECT 
-        restaurants.name AS restaurant,
-        restaurants.type AS type,
-    FROM restaurants WHERE type=$1;
-`, [type]);
+        SELECT name, type FROM restaurants WHERE type=$1`, [type]);
         return restaurants.rowCount > 0 ?
             res.status(200).send(restaurants.rows) :
             res.status(404).send({ message: 'Restaurants not found' });
