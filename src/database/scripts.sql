@@ -42,7 +42,6 @@
     userEmail VARCHAR(100),
     restaurantID INT,
     dateandhour CHAR(16) NOT NULL,
-    /* data e hora da entrega */
     state VARCHAR(10) NOT NULL,
     FOREIGN KEY(userEmail) REFERENCES users(email),
     FOREIGN KEY(restaurantID) REFERENCES restaurants(id));
