@@ -1,5 +1,4 @@
 const pool = require('../config/database.config');
-const jwt = require('jsonwebtoken');
 const { verifyEmail, verifyCpf, verifyPassword } = require('../models/verify.functions');
 
 const getAllUsers = async(req, res) => {
@@ -124,8 +123,6 @@ const loginUser = async(req, res) => {
         if(getUser.length == 0) {
             return res.status(500).send({ message: 'User not found' });
         }
-
-        const
 
     } catch(e) {
         console.log('Could not GET user, server error', e);
