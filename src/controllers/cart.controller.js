@@ -33,4 +33,29 @@ const getOrdersInCart = async(req, res) => {
     }
 }
 
+
+const postOrder= async (req, res) => {
+    const { name,restaurantID,state,itens } = req.body;
+  
+    try {
+          
+  const orderReq= await pool.query(
+        'INSERT INTO orders (name, restaurantID,state) VALUES ($1, $2, $3) RETURNING id',
+        [name, restaurantID, state]
+      );
+  const orderid = orderReq[0].id;
+  
+   for (const item of itens) {
+        await pool.query(
+          'INSERT INTO itensOrders (orderid, productid, quantity) VALUES ($1, $2, $3)',
+          [pedidoId, item.productId, item.quantity]
+        );
+      }
+  res.status(200).json({ success: true, orderId });
+    } catch (error) {
+      console.error('Erro ao inserir pedido:', error);
+      res.status(500).json({ success: false, error: 'Erro interno nessa bomba' });
+    }
+}
+
 module.exports = { getOrdersInCart };
