@@ -63,6 +63,13 @@
         FOREIGN KEY (restaurantid) REFERENCES restaurants(id)
     );
 
+CREATE TABLE rtoken (
+    id SERIAL PRIMARY KEY,
+    token TEXT NOT NULL,
+    user_email VARCHAR(100) NOT NULL,
+    FOREIGN KEY (user_email) REFERENCES users(email)
+);
+
 INSERT INTO users(name, email, cpf, telephone, password) VALUES('pedro', 'pedrormont@gmail.com', '47355397869', '19997908453', 'Pedro@4739');
 
 INSERT INTO address(state, city, neighborhood, number, cep) VALUES ('SP', 'Valinhos', 'teste3', 23, '12345678');
