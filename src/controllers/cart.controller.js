@@ -52,12 +52,54 @@ const postOrder = async (req, res) => {
                 [orderId, item.productid, item.quantity]
             );
         }
-        return res.status(200).send({ message: 'posted order' });
+        return res.status(201).send({ message: 'posted order' });
     } catch (error) {
         console.log('Could not POST HTTP', error);
         return res.status(500).send({ message: 'Erro interno' });
     }
 };
+
+const updateOrder = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { userEmail, restaurantID, dateandhour, state, itens } = req.body;
+        const abstractDate = new Date(dateandhour);
+
+        const newDate = `${String(abstractDate.getDate()).padStart(2, '0')}-${String(abstractDate.getMonth() + 1).padStart(2, '0')}-${abstractDate.getFullYear()} ${String(abstractDate.getHours()).padStart(2, '0')}:${String(abstractDate.getMinutes()).padStart(2, '0')}`;
+
+        const order = (await pool.query('SELECT * FROM orders WHERE id=$1', [id])).rows[0];
+
+        if (!order) {
+            return res.status(404).send({ message: 'This order does not exist' });
+        }
+
+        await pool.query('UPDATE orders SET useremail=$1, restaurantid=$2, dateandhour=$3, state=$4 WHERE id=$5',
+            [userEmail, restaurantID, newDate, state, id]);
+
+        for (const item of itens) {
+            if (item.quantity > 0) {
+                const existingItem = (await pool.query('SELECT * FROM itensorders WHERE orderid=$1 AND productid=$2', [id, item.productid])).rows[0];
+                if (existingItem) {
+                    await pool.query('UPDATE itensorders SET quantity=$1 WHERE orderid=$2 AND productid=$3',
+                        [item.quantity, id, item.productid]);
+                } else {
+                    await pool.query('INSERT INTO itensorders (orderid, productid, quantity) VALUES ($1, $2, $3)',
+                        [id, item.productid, item.quantity]);
+                }
+            } else {
+                await pool.query('DELETE FROM itensorders WHERE orderid=$1 AND productid=$2',
+                    [id, item.productid]);
+            }
+        }
+
+        return res.status(200).send({ message: 'Updated order' });
+
+    } catch (e) {
+        console.error('Could not PUT HTTP', e);
+        return res.status(500).send({ message: 'Internal error' });
+    }
+};
+
 
 const alterOrderState = async(req, res) => {
     try {
@@ -78,4 +120,4 @@ const alterOrderState = async(req, res) => {
     }
 }
 
-module.exports = { getOrdersInCart, postOrder, alterOrderState };
+module.exports = { getOrdersInCart, postOrder, alterOrderState, updateOrder };

@@ -159,3 +159,47 @@ INSERT INTO users (name, email, cpf, telephone, password, addres) VALUES ('Maria
 ('Otavio Biori', 'bioriotavio@gmail.com', '010.915.590-40', '(24) 96195-1032', '0tavio8iori', 20);
 
 //* Insert de endereço de restaurante*//
+USUARIOS
+
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('São Paulo', 'Campinas', 'Rua das Oliveiras', 'Jardim das Flores', 234, 'Casa Verde', '13050-123');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('São Paulo', 'Valinhos', 'Avenida das Palmeiras', 'Icaraí', 678, 'Apartamento 502', '13220-456');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('São Paulo', 'Hortolândia', 'Rua dos Ipês', 'Funcionários', 321, 'Bloco C Sala 101', '13130-321');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('São Paulo', 'Hortolândia', 'Avenida das Gaivotas', 'Itapuã', 876, 'Casa Amarela', '13615-876');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('São Paulo', 'Campinas', 'Rua das Acácias', 'Petrópolis', 543, 'Fundos', '13470-543');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('São Paulo', 'Valinhos', 'Rua das Rosas', 'Trindade', 871, 'Casa Verde', '13036-876');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('São Paulo', 'Hortolândia', 'Avenida dos Coqueiros', 'Boa Viagem', 237, 'Bloco D, Apartamento 204', '13111-234');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('São Paulo', 'Valinhos', 'Rua das Mangueiras', 'Aldeota', 567, 'Casa Azul de esquina', '13140-567');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('São Paulo', 'Campinas', 'Avenida das Castanheiras', 'Nazaré', 890, 'Sala 301', '13035-890');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('São Paulo', 'Valinhos', 'Rua dos Pinheiros', 'Jardim da Penha', 765, 'Perto do mercado PagueMenos', '13060-764');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('São Paulo', 'Hortolândia', 'Avenida das Acácias', 'Jardim São Paulo', 321, 'Casa Azul', '13035-321');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('São Paulo', 'Campinas', 'Rua dos Girassóis', 'Setor Oeste', 654, 'Apartamento 102', '13120-654');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('São Paulo', 'Campinas', 'Avenida das Orquídeas', 'Tirol', 284, 'Sala 203', '13022-234');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('São Paulo', 'Valinhos', 'Rua das Papoulas', 'Manaíra', 987, 'Casa Branca', '13038-987');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('São Paulo', 'Hortolândia', 'Avenida das Magnólias', 'Ponta Verde', 896, 'Bloco E, Apartamento 301', '13035-876');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('São Paulo', 'Valinhos', 'Rua das Violetas', 'Jardins', 543, 'Perto da farmácia Drogasil', '13025-543');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('São Paulo', 'Campinas', 'Avenida das Bromélias', 'Adrianópolis', 789, 'Apartamento 402', '13057-789');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('São Paulo', 'Valinhos', 'Rua dos Cravos', 'Plano Diretor Sul', 658, 'Do lado de um portão Vermelho', '13015-654');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('São Paulo', 'Hortolândia', 'Avenida das Azaleias', 'Bosque', 312, 'Sala 201', '13804-987');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('São Paulo', 'Campinas', 'Avenida dos Lírios', 'Tancredo Neves', 124, 'Casa de esquina', '13314-876');
+
+
+RESTAURANTES
+
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('São Paulo', 'Campinas', 'R. Eng. Carlos Stevenson', 'Nova Campinas', 323, '13025-320');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('São Paulo', 'Valinhos', 'Av. Dom Nery', 'Vila Embare', 646, '13271-170');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('São Paulo', 'Hortolândia', 'R. Zacarias Costa Camargo', 'Lot. Remanso Campineiro', 280, '13184-280');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('São Paulo', 'Campinas', 'AV. JOÃO ERBOLATO', 'JARDIM CHAPADÃO', 67, '13070-071');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('São Paulo', 'Valinhos', 'Av. Tiradentes', 'Vila Angeli', 36,'13271-060');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('São Paulo', 'Hortolândia', 'Av. Olívio Franceschini', 'Parque Ortolândia', 1885, '13184-160');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('São Paulo', 'Campinas', 'Av. Mal. Rondon', 'Jardim Chapadão', 985, '13066-001');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('São Paulo', 'Valinhos', 'Av. Dom Nery', 'Vila Embare', 531, '13271-170');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('São Paulo', 'Hortolândia', 'Av. Olívio Franceschini', 'Lot. Remanso Campineiro', 1684 , '13184-505');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('São Paulo', 'Valinhos', 'R. Paiquerê', 'Jardim Paiquere', 200, '13271-600');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('São Paulo', 'Campinas', 'Av. Guilherme Campos', 'Parque das Flores', 500, '13087-091');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('São Paulo', 'Hortolândia', 'Rua Terezinha de Jesus', 'Jardim Santa Rita de Cassia', 174, 'sala 1', '13186-242');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('São Paulo', 'Campinas', 'Av. Dr. Ângelo Simões', 'Pte. Preta', 580, '13041-455');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('São Paulo', 'Valinhos', 'R. Dom Paulo de Társo Campos', 'Jardim Vila Rosa', 72, '13270-240');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('São Paulo', 'Hortolândia', 'R. Pico do Cruzeiro', 'Jardim Everest', 54, '13186-042');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('São Paulo', 'Campinas', 'Av. das Amoreiras', 'Chácaras Campos Elíseos', 1461, '13030-405');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('São Paulo', 'Valinhos', 'R. Luís Spiandorelli Neto', 'Jardim Paiquere', 161, '13271-600');
+INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('São Paulo', 'Hortolândia', 'Av. Santana', 'Parque Ortolândia', 857, '13184-210');

@@ -1,4 +1,5 @@
 const pool = require('../config/database.config');
+const jwt = require('jsonwebtoken');
 const { verifyEmail, verifyCpf, verifyPassword } = require('../models/verify.functions');
 
 const getAllUsers = async(req, res) => {
@@ -112,6 +113,23 @@ const deleteUser = async(req, res) => {
     } catch(e) {
         console.log('Could not DELETE user, server error', e);
         return res.status(500).send({ message: 'Could not HTTP DELETE' });
+    }
+}
+
+const loginUser = async(req, res) => {
+    try {
+        const { email, password } = req.body;
+        const getUser = (await pool.query('SELECT * FROM users WHERE email=$1', [email])).rows;
+
+        if(getUser.length == 0) {
+            return res.status(500).send({ message: 'User not found' });
+        }
+
+        const
+
+    } catch(e) {
+        console.log('Could not GET user, server error', e);
+        return res.status(500).send({ message: 'Could not HTTP GET' });
     }
 }
 
