@@ -36,10 +36,13 @@ const getOrdersInCart = async(req, res) => {
 const postOrder = async (req, res) => {
     try {
         const { userEmail, restaurantID, dateandhour, state, itens } = req.body;
+        const abstractDate = new Date(dateandhour);
+
+        const newDate = `${abstractDate.getDate()}-${abstractDate.getMonth()}-${abstractDate.getFullYear()} ${abstractDate.getHours()}-${abstractDate.getMinutes()}`;
 
         const orderReq = await pool.query(
             'INSERT INTO orders (userEmail, restaurantID, dateandhour, state) VALUES ($1, $2, $3, $4) RETURNING id',
-            [userEmail, restaurantID, dateandhour, state]
+            [userEmail, restaurantID, newDate, state]
         );
         const orderId = orderReq.rows[0].id;
 
@@ -49,13 +52,30 @@ const postOrder = async (req, res) => {
                 [orderId, item.productid, item.quantity]
             );
         }
-        res.status(200).json({ success: true, orderId });
+        return res.status(200).send({ message: 'posted order' });
     } catch (error) {
-        console.error('Erro ao inserir pedido:', error);
-        res.status(500).json({ success: false, error: 'Erro interno' });
+        console.log('Could not POST HTTP', error);
+        return res.status(500).send({ message: 'Erro interno' });
     }
 };
 
-//fazer função post
+const alterOrderState = async(req, res) => {
+    try {
+        const { id } = req.params;
+        const { state } = req.body;
+    
+        const order = (await pool.query('SELECT * FROM orders WHERE id=$1', [id])).rows;
+    
+        if(!order) {
+            return res.status(404).send({ message: 'Order not found' });
+        }
+    
+        await pool.query('UPDATE orders SET state=$1 WHERE id=$2',[state, id]);
+        return res.status(200).send({ message: 'order state updated', state });
+    } catch(e) {
+        console.log('Could not POST HTTP', e);
+        return res.status(500).send({ message: 'Erro interno' });
+    }
+}
 
-module.exports = { getOrdersInCart, postOrder };
+module.exports = { getOrdersInCart, postOrder, alterOrderState };

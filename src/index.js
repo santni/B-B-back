@@ -5,7 +5,7 @@ const usersRouter = require('./routes/users.routes');
 const addressRouter = require('./routes/address.routes');
 const cartRouter = require('./routes/cart.routes');
 const restaurantsRouter = require('./routes/restaurants.routes');
-const productsRouter = require('./routes/restaurants.routes');
+const productsRouter = require('./routes/products.routes');
 
 const port = process.env.PORT;
 

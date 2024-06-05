@@ -8,4 +8,4 @@ router.post('/', productsControllers.postController);
 router.put('/product/:id', productsControllers.putController);
 router.delete('/product/:id', productsControllers.deleteController)
 
-module.exports = { router };
+module.exports = router;
