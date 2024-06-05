@@ -33,29 +33,29 @@ const getOrdersInCart = async(req, res) => {
     }
 }
 
-
-const postOrder= async (req, res) => {
-    const { name,restaurantID,state,itens } = req.body;
-  
+const postOrder = async (req, res) => {
     try {
-          
-  const orderReq= await pool.query(
-        'INSERT INTO orders (name, restaurantID,state) VALUES ($1, $2, $3) RETURNING id',
-        [name, restaurantID, state]
-      );
-  const orderid = orderReq[0].id;
-  
-   for (const item of itens) {
-        await pool.query(
-          'INSERT INTO itensOrders (orderid, productid, quantity) VALUES ($1, $2, $3)',
-          [pedidoId, item.productId, item.quantity]
-        );
-      }
-  res.status(200).json({ success: true, orderId });
-    } catch (error) {
-      console.error('Erro ao inserir pedido:', error);
-      res.status(500).json({ success: false, error: 'Erro interno nessa bomba' });
-    }
-}
+        const { userEmail, restaurantID, dateandhour, state, itens } = req.body;
 
-module.exports = { getOrdersInCart };
+        const orderReq = await pool.query(
+            'INSERT INTO orders (userEmail, restaurantID, dateandhour, state) VALUES ($1, $2, $3, $4) RETURNING id',
+            [userEmail, restaurantID, dateandhour, state]
+        );
+        const orderId = orderReq.rows[0].id;
+
+        for (const item of itens) {
+            await pool.query(
+                'INSERT INTO itensorders (orderid, productid, quantity) VALUES ($1, $2, $3)',
+                [orderId, item.productid, item.quantity]
+            );
+        }
+        res.status(200).json({ success: true, orderId });
+    } catch (error) {
+        console.error('Erro ao inserir pedido:', error);
+        res.status(500).json({ success: false, error: 'Erro interno' });
+    }
+};
+
+//fazer função post
+
+module.exports = { getOrdersInCart, postOrder };
