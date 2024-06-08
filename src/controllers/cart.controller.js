@@ -133,4 +133,23 @@ const alterOrderState = async(req, res) => {
     }
 }
 
-module.exports = { getOrdersInCart, postOrder, alterOrderState, updateOrder, getOrderById};
+const deleteOrder = async(req, res) => {
+    try { 
+        const { id } = req.params;
+
+        const order = (await pool.query('SELECT * FROM orders WHERE id=$1', [id])).rows;
+    
+        if(!order) {
+            return res.status(404).send({ message: 'Order not found' });
+        }
+
+        await pool.query('DELETE FROM orders WHERE id=$1',[id]);
+        await pool.query('DELETE FROM itensorders WHERE orderid=$1', [id]);
+
+    } catch(e) {
+        console.log('Could not DELETE HTTP', e);
+        return res.status(500).send({ message: 'Erro interno' });
+    }
+}
+
+module.exports = { getOrdersInCart, postOrder, alterOrderState, updateOrder, getOrderById, deleteOrder };
