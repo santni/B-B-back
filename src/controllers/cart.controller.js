@@ -33,6 +33,19 @@ const getOrdersInCart = async(req, res) => {
     }
 }
 
+const getOrderById = async(req, res) => {
+    try {
+        const { id } = req.params;
+        const order = await pool.query('SELECT * FROM orders WHERE id=$1',[id]);
+        return order.rowCount > 0 ? 
+        res.status(200).send(order.rows[0]) :
+        res.status(200).send({ message: 'order not found' });
+    } catch(e) {
+        console.log('Could not GET orders, server error', e);
+        return res.status(500).send({ message: 'Could not HTTP GET' });
+    }
+}
+
 const postOrder = async (req, res) => {
     try {
         const { userEmail, restaurantID, dateandhour, state, itens } = req.body;
@@ -52,7 +65,7 @@ const postOrder = async (req, res) => {
                 [orderId, item.productid, item.quantity]
             );
         }
-        return res.status(201).send({ message: 'posted order' });
+        return res.status(201).send({ message: 'posted order', order: orderId });
     } catch (error) {
         console.log('Could not POST HTTP', error);
         return res.status(500).send({ message: 'Erro interno' });
@@ -83,7 +96,7 @@ const updateOrder = async (req, res) => {
                     await pool.query('UPDATE itensorders SET quantity=$1 WHERE orderid=$2 AND productid=$3',
                         [item.quantity, id, item.productid]);
                 } else {
-                    await pool.query('INSERT INTO itensorders (orderid, productid, quantity) VALUES ($1, $2, $3)',
+                    await pool.query('UPDATE itensorders SET productid=$2 quantity=$3 WHERE id=$1;',
                         [id, item.productid, item.quantity]);
                 }
             } else {
@@ -120,4 +133,4 @@ const alterOrderState = async(req, res) => {
     }
 }
 
-module.exports = { getOrdersInCart, postOrder, alterOrderState, updateOrder };
+module.exports = { getOrdersInCart, postOrder, alterOrderState, updateOrder, getOrderById};
