@@ -93,34 +93,29 @@ LEFT JOIN
 INSERT INTO restaurants(name, type, operation, image, address) VALUES ('Pizzaria Castelo', 'Pizza', '07:30-23:30', 'https://i.imgur.com/FJqH8rY.png', 21),
  ('Pizzaria Maremonti', 'Pizza', '07:30-23:30', 'https://i.imgur.com/56pMn1y.png', 22),
  ('Pizzaria Serata', 'Pizza', '07:30-23:30', 'https://i.imgur.com/eMwHRzO.png', 23),
-//* Insert de Restaurantes Sushi*//
  ('Katori Sushi', 'Sushi', '07:30-23:30', 'https://i.imgur.com/Ouil1wP.png', 24),
  ('Kitaki Sushi', 'Sushi', '07:30-23:30', 'https://i.imgur.com/9tuipO3.png', 25),
  ('Satoshy Sushi', 'Sushi', '07:30-23:30', 'https://i.imgur.com/7otf5Dd.jpg', 26),
-//* Insert de Restaurantes Sorvete*//
  ('Sergel', 'Sorvete', '07:30-23:30', 'https://i.imgur.com/tXYbXW1.jpg', 27),
  ('Tô indo açai', 'Sorvete', '07:30-23:30', 'https://i.imgur.com/acwU0Sa.png', 28),
  ('Sorveteria eskimó', 'Sorvete', '07:30-23:30', 'https://i.imgur.com/PCWNqzF.png', 29),
-//* Insert de Restaurantes Massa*//
  ('Spoleto', 'Massa', '07:30-23:30', ' https://i.imgur.com/sbYss67.png', 30),
  ('Famiglia mancini', 'Massa', '07:30-23:30', 'https://i.imgur.com/AoS31Ox.jpg', 31),
  ('jamies s italian', 'Massa', '07:30-23:30', ' https://i.imgur.com/ZzIeJ4T.png', 32),
-//* Insert de Restaurantes Marmita*//
  ('Sabor Imperial', 'Marmita', '07:30-23:30', 'https://i.imgur.com/TOmaWQ0.png', 33),
- ('FASTNFIT', 'Marmita', '07:30-23:30', 'https://i.imgur.com/g3sSWED.jpg' 34),
+ ('FASTNFIT', 'Marmita', '07:30-23:30', 'https://i.imgur.com/g3sSWED.jpg', 34),
  ('Marmitas do Zé', 'Marmita', '07:30-23:30', 'https://i.imgur.com/z9PuTCs.png', 35),
-//* Insert de Restaurantes FastFood*//
  ('Mc Donald', 'FastFood', '07:30-23:30', 'https://i.imgur.com/LwkxTQX.png', 36),
  ('Burger King', 'FastFood', '07:30-23:30', 'https://i.imgur.com/GtkS4Aa.jpg', 37),
  ('Subway', 'FastFood', '07:30-23:30', 'https://i.imgur.com/pJosNk9.jpg', 38);
 
 //* Insert de  Endereço de usuarios*//
-INSERT INTO address (states, city, street, neighborhood, number, complement, cep) VALUES ('São Paulo', 'Campinas', 'Rua das Oliveiras', 'Jardim das Flores', 234, 'Casa Verde', '13050123'),
+INSERT INTO address (state, city, street, neighborhood, number, complement, cep) VALUES ('SP', 'Campinas', 'Rua das Oliveiras', 'Jardim das Flores', 234, 'Casa Verde', '13050123'),
  ('RJ', 'Niterói', 'Avenida das Palmeiras', 'Icaraí', 678, 'Apartamento 502', '24220456'),
  ('MG', 'Belo Horizonte', 'Rua dos Ipês', 'Funcionários', 321, 'Bloco C Sala 101', '30130321'),
  ('BA', 'Salvador', 'Avenida das Gaivotas', 'Itapuã', 876, 'Casa Amarela', '41615876'),
- ('BA', 'Porto Seguro', 'Rua das Acácias', 'Petrópolis', 543, 'Fundos', '90470-543'),
- ('SC', 'Florianópolis', 'Rua das Rosas', 'Trindade', 871, 'Casa Verde', '88036-876'),
+ ('BA', 'Porto Seguro', 'Rua das Acácias', 'Petrópolis', 543, 'Fundos', '90470543'),
+ ('SC', 'Florianópolis', 'Rua das Rosas', 'Trindade', 871, 'Casa Verde', '88036876'),
  ('SC', 'Criciúma', 'Avenida dos Coqueiros', 'Boa Viagem', 237, 'Bloco D, Apartamento 204', '51111234'),
  ('SP', 'Valinhos', 'Rua das Mangueiras', 'Aldeota', 567, 'Casa Azul de esquina', '60140567'),
  ('RJ', 'Paraty', 'Avenida das Castanheiras', 'Nazaré', 890, 'Sala 301', '66035890'),
@@ -137,7 +132,7 @@ INSERT INTO address (states, city, street, neighborhood, number, complement, cep
  ('PR', 'Curitiba', 'Avenida dos Lírios', 'Tancredo Neves', 124, 'Casa de esquina', '69314876');
 
 //* Insert de Usuarios*//
-INSERT INTO users (name, email, cpf, telephone, password, addres) VALUES ('Maria Luiza Neves', 'maluneves@gmail.com', '54468556048', '41964481317', 'MaluN3ves87', 1),
+INSERT INTO users (name, email, cpf, telephone, password, address) VALUES ('Maria Luiza Neves', 'maluneves@gmail.com', '54468556048', '41964481317', 'MaluN3ves87', 1),
 ('João Guilherme Caetano dos Santos', 'joaoguicaet23@gmail.com', '67690340008', '27980193604', 'Guilh3rm&C4etano', 2),
 ('Nicolly Isabeli dos Santos Silva', 'nicollyisabeliss@gmail.com', '23404809815', '16964861576', 'Nicolly3856??', 3),
 ('Silvia Batista da Silva', 'silvabatistasilvia@gmail.com', '56695489068', '31996665386', 'B4atistaSilvia123', 4),
