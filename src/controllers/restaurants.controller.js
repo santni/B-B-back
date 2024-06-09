@@ -65,7 +65,7 @@ WHERE
 `, [id]);
         return restaurants.rowCount > 0 ?
             res.status(200).send(restaurants.rows[0]) :
-            res.status(404).send({ message: 'Restaurants not found' });
+            res.status(404).send({ message: 'Restaurant not found' });
     } catch (e) {
         console.log('Could not GET restaurants by id, server error', e);
         return res.status(500).send({ message: 'Could not HTTP GET' });

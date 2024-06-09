@@ -153,4 +153,10 @@ INSERT INTO users (name, email, cpf, telephone, password, address) VALUES ('Mari
 ('Manuela Queiroz Machado', 'manuqueiroz14@gmail.com', '84871218023', '19994716069', 'manuqueiroz1356', 19),
 ('Otavio Biori', 'bioriotavio@gmail.com', '01091559040', '24961951032', '0tavio8iori', 20);
 
-//* Insert de endereço de restaurante*//
+//* Insert de produtos*//
+
+INSERT INTO products(name, description, price, restaurantid, image) 
+VALUES 
+('Big Tasty', 'O sabor inconfundível do Big Tasty: um suculento hambúrguer de carne bovina grelhada, queijo derretido, alface fresca, cebola caramelizada, tomate e o exclusivo molho Big Tasty, tudo isso em um pão de hambúrguer com gergelim.', 24.00, 17, 'https://i.imgur.com/LjfBD9i.png'),
+('Big Mc', 'Um clássico reinventado: dois hambúrgueres de carne bovina grelhada, queijo derretido, alface crocante, cebola, picles, e o exclusivo molho Big Mac, tudo isso em um pão de hambúrguer com gergelim.', 20.00, 17, 'https://i.imgur.com/D6jYiBs.png'),
+('Mc Chicken', 'Uma deliciosa combinação de um filé de frango empanado, alface crocante, maionese e pão de hambúrguer com gergelim. Uma opção saborosa para os amantes de frango.', 18.00, 17, 'https://i.imgur.com/JRBVqEc.png');
