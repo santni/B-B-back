@@ -56,7 +56,7 @@
 
     CREATE TABLE products(
         id SERIAL PRIMARY KEY,
-        name VARCHAR(30) NOT NULL UNIQUE,
+        name VARCHAR(100) NOT NULL UNIQUE,
         description TEXT NOT NULL,
         price DECIMAL(10, 2) NOT NULL,
         restaurantid INT,

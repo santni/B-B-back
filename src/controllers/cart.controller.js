@@ -46,6 +46,19 @@ const getOrderById = async(req, res) => {
     }
 }
 
+const getOrderByState = async(req, res) => {
+    try {
+        const { email } = req.params;
+        const order = await pool.query('SELECT * FROM orders WHERE state=$1 AND useremail=$2',['cart', email]);
+        return order.rowCount > 0 ? 
+        res.status(200).send(order.rows[0]) :
+        res.status(200).send({ message: 'order not found' });
+    } catch(e) {
+        console.log('Could not GET orders, server error', e);
+        return res.status(500).send({ message: 'Could not HTTP GET' });
+    }
+}
+
 const postOrder = async (req, res) => {
     try {
         const { userEmail, restaurantID, dateandhour, state, itens } = req.body;
@@ -152,4 +165,4 @@ const deleteOrder = async(req, res) => {
     }
 }
 
-module.exports = { getOrdersInCart, postOrder, alterOrderState, updateOrder, getOrderById, deleteOrder };
+module.exports = { getOrdersInCart, postOrder, alterOrderState, updateOrder, getOrderById, deleteOrder, getOrderByState };
