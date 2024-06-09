@@ -7,7 +7,8 @@ const getRestaurants = async (req, res) => {
     SELECT 
         restaurants.name AS restaurant,
         restaurants.type AS type,
-        restaurants.id AS id
+        restaurants.id AS id,
+        restaurants.image
     FROM restaurants;
     `);
         return restaurants.rowCount > 0 ?
@@ -41,7 +42,7 @@ WHERE
 
         `, [`${name}%`]);
         return restaurants.rowCount > 0 ?
-            res.status(200).send(restaurants.rows[0]) :
+            res.status(200).send(restaurants.rows) :
             res.status(404).send({ message: 'Restaurants not found' });
     } catch (e) {
         console.log('Could not GET restaurants by name, server error', e);
@@ -76,7 +77,7 @@ const getRestaurantsByType = async (req, res) => {
         const { type } = req.params;
 
         const restaurants = await pool.query(`
-        SELECT name, type, id FROM restaurants WHERE type=$1`, [type]);
+        SELECT name, type, id, image, operation FROM restaurants WHERE type=$1`, [type]);
         return restaurants.rowCount > 0 ?
             res.status(200).send(restaurants.rows) :
             res.status(404).send({ message: 'Restaurants not found' });
