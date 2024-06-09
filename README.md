@@ -1,6 +1,6 @@
 # B&B: Bom & Barato - BackEnd
 
-Este é o repositório oficial do nosso aplicativo de delivery de comida B&B. Aqui você encontrará tudo o que precisa para desfrutar de uma experiência de pedido de comida rápida, fácil e segura. Explore uma variedade de restaurantes locais e faça seus pedidos com apenas alguns toques na tela do seu dispositivo móvel. Experimente uma nova maneira de saborear suas refeições favoritas, onde quer que esteja!
+Bem-vindo ao repositório oficial do nosso aplicativo de entrega de comida B&B. Aqui você encontrará tudo o que precisa para desfrutar de uma experiência de pedido de comida rápida, fácil e segura. Explore uma variedade de restaurantes locais e faça seus pedidos com apenas alguns toques na tela do seu dispositivo móvel. Experimente uma nova maneira de saborear suas refeições favoritas, onde quer que esteja!
 
 ## Como Utilizar
 
@@ -13,11 +13,12 @@ Este é o repositório oficial do nosso aplicativo de delivery de comida B&B. Aq
 2. Instale as dependências: npm install
 3. Inicie o servidor de desenvolvimento: expo start
 
-## Estrutura de arquivos
+## Estrutura de Arquivos
 
 O projeto segue uma organização lógica de arquivos, facilitando a manutenção e a compreensão do código:
 
 
+```
 react-native-expo-boilerplate/
 ├── src/
 │   ├── components/
@@ -25,6 +26,7 @@ react-native-expo-boilerplate/
 │   ├── routes/
 │   ├── screens/
 └── App.jsx
+```
 
 
 ## Tecnologias
@@ -34,14 +36,13 @@ react-native-expo-boilerplate/
 - [React Navigation](https://reactnavigation.org/)
 
 ## Documentação do Banco de Dados
-
 ### Tabelas:
 
 1. *Usuários (users):*
    - name: Nome do usuário (varchar).
    - email: Email do usuário (varchar, chave primária).
    - cpf: CPF do usuário (char).
-   - telephone: Telefone do usuário (char).
+   - telefone: Telefone do usuário (char).
    - password: Senha do usuário (text).
    - address: ID do endereço do usuário (int).
    - *Chave Estrangeira:*
@@ -94,7 +95,7 @@ react-native-expo-boilerplate/
    - *Chave Estrangeira:*
      - restaurantid: Referencia o ID de um restaurante na tabela restaurants.
     
-## Visão geral das rotas disponíveis
+## Visão Geral das Rotas Disponíveis
 
 ### Rotas
 
@@ -145,4 +146,4 @@ Este projeto está licenciado sob a licença MIT - consulte o arquivo [LICENSE](
 
 ## Contato
 
-Se você tiver alguma dúvida, sinta-se à vontade para me contatar em [meu e-mail](mailto:pedrormont@gmail.com)
+Se você tiver alguma dúvida, sinta-se à vontade para me contatar em [meu e-mail](mailto:pedrormont@gmail.com).
